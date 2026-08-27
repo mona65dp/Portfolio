@@ -5,34 +5,26 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/Portfolio/',
   plugins: [
     react(),
     tailwindcss(),
     //babel({ presets: [reactCompilerPreset()] })
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['/.ico', '/.png', 'icons.svg'],
+      includeAssets: ['favicon.svg', 'icons.svg'],
       manifest: {
         name: 'Portfolio',
         short_name: 'Portfolio',
         description: 'My Portfolio Website',
         theme_color: '#ffffff',
+        start_url: '/Portfolio/',
+        scope: '/Portfolio/',
         icons: [
           {
-            src: '/',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: '/',
-            sizes: '512x512',
-            type: 'image/png'
-          },
-          {
-            src: '/',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable'
+            src: 'favicon.svg',
+            sizes: 'any',
+            type: 'image/svg+xml'
           }
         ]
       }
