@@ -1,3 +1,5 @@
+link: https://mona65dp.github.io/Portfolio/
+
 ## 🇹🇭 Thai Version (ภาษาไทย)
 [ **TH** | [EN](#english) ]
 
@@ -98,7 +100,7 @@ React Component จะทำการเรนเดอร์การ์ดโ�
 
 
 # Witthaya Audomrat - Junior Game Designer & Developer
-*(Scroll down for Thai version / เลื่อนลงด้านล่างสำหรับหน้าภาษาไทย)*
+
 
 ---
 
