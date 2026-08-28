@@ -28,7 +28,7 @@ const projects = {
 }
 
 function SectionTitle({ children }) {
-  const icons = { Education: 'fa-graduation-cap', 'Technical Skills': 'fa-screwdriver-wrench', 'Work Experience': 'fa-briefcase', 'Selected Projects': 'fa-folder-open' }
+  const icons = { Education: 'fa-graduation-cap', 'Technical Skills': 'fa-screwdriver-wrench', 'Work Experience': 'fa-briefcase', Projects: 'fa-folder-open' }
   return <h2 className="section-title"><i className={`fas ${icons[children] || 'fa-sparkles'} mr-3 text-indigo-600`} />{children}</h2>
 }
 
@@ -62,9 +62,9 @@ function Home() {
       <section id="about" className="section-spacing relative z-10 px-4 pt-36 md:pt-44">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="display-title">Hello, I&apos;m<br /><span>Witthaya Audomrat</span></h1>
-          <p className="mx-auto mt-5 mb-2 max-w-3xl text-xl font-light leading-relaxed text-slate-600 md:text-2xl">Junior Game Designer & Developer</p>
+          <p className="mx-auto mt-5 mb-5 max-w-3xl text-xl font-light leading-relaxed text-slate-600 md:text-2xl">Junior Game Designer & Developer</p>
           <div className="location-pill"><i className="fas fa-map-marker-alt mr-2 text-emerald-500" />Nonthaburi, Thailand</div>
-          <div className="liquid-card mx-auto mt-10 max-w-3xl p-7 text-left md:p-10">
+          <div className="liquid-card mx-auto mt-4 max-w-3xl p-7 text-left md:p-10">
             <h2 className="mb-3 text-lg font-semibold text-slate-900"><i className="fas fa-user-circle mr-2 text-indigo-600" />About Me</h2>
             <p className="leading-relaxed text-slate-600">Fresh grad with hands-on <strong>Unity, Roblox & Figma</strong> experience. Leverages <strong>AI-assisted coding</strong> for fast gameplay prototyping, economy balancing, and QA testing. Winner of the <strong>Outstanding CWIE Innovation Award</strong>. Adaptable, hardworking, and ready to learn.</p>
             <div className="mt-6 flex flex-col gap-3 border-t border-slate-200/70 pt-6 text-sm font-medium text-slate-700 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
