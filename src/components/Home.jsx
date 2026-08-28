@@ -10,7 +10,7 @@ const experiences = [
   {
     role: "Game Designer Intern",
     company: "LUMAS CORP | Bangkok",
-    date: "Jan - May 2026",
+    date: "Jan-May 2026",
     tone: "primary",
     points: [
       {
@@ -30,7 +30,7 @@ const experiences = [
   {
     role: "Product Consultant / Sales",
     company: "ORIENTAL AROMA | Bangkok",
-    date: "Jan - Aug 2025",
+    date: "Jan-Aug 2025",
     tone: "secondary",
     points: [
       {
@@ -285,8 +285,8 @@ function Home() {
       <section id="experience" className="section-spacing relative z-10 px-4">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="flex flex-col gap-8">
-              <div className="liquid-card p-6 md:p-8">
+            <div className="flex flex-col gap-8 ">
+              <div className="liquid-card p-6 md:p-8 ">
                 <SectionTitle>Education</SectionTitle>
                 <h3 className="text-xl font-bold text-slate-900">
                   Dhurakij Pundit University
@@ -299,7 +299,7 @@ function Home() {
                 </p>
                 <div className="mt-5 flex items-center justify-between border-t border-slate-200/70 pt-5">
                   <span className="tag tag-accent">GPAX: 3.38</span>
-                  <span className="date-pill">2022 - 2026</span>
+                  <span className="date-pill">2022-2026</span>
                 </div>
               </div>
               <div className="liquid-card p-6 md:p-8">
