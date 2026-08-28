@@ -3,7 +3,7 @@ import { useState } from 'react'
 const skills = {
   'Languages & Web': ['C#', 'HTML', 'React', 'Tailwind CSS', 'JavaScript'],
   'Dev Tools & Engines': ['Unity', 'Roblox Studio', 'VS Code', 'GitKraken'],
-  'Design & Tools': ['Figma', 'Canva', 'OBS Studio'],
+  'Design & Tools': ['Figma', 'Canva', 'OBS Studio', 'TikTok Studio'],
 }
 
 const experiences = [
@@ -12,18 +12,18 @@ const experiences = [
     points: [{ label: 'Game & Economy Design', text: 'Designed core game mechanics, rules, and balanced in-game economies.' }, { label: 'Production & QA', text: 'Managed task allocation and enforced QA standards to hit project deadlines.' }, { label: 'Client Relations', text: 'Presented deliverables and iterated game designs based on client feedback.' }],
   },
   {
-    role: 'Product Consultant / Sales', company: 'ORIENTAL AROMA | Bangkok', date: 'Jan - May 2025', tone: 'secondary',
+    role: 'Product Consultant / Sales', company: 'ORIENTAL AROMA | Bangkok', date: 'Jan - Aug 2025', tone: 'secondary',
     points: [{ label: 'Customer Service & Sales', text: 'Served Thai and international customers, actively promoting products to hit sales targets.' }, { label: 'Checkout Assistance', text: 'Guided customers through checkout process to ensure smooth payment transactions.' }, { label: 'Inventory Management', text: 'Tracked and recorded inventory levels to maintain accurate stock control.' }],
   },
 ]
 
 const projects = {
   game: [
-    { title: 'Pioneer of the Stars', url: 'https://moonun.itch.io/pioneer-of-the-stars', type: 'Unity', date: "Jan-Aug '26", role: 'Game Designer, Developer & Project Manager', image: 'https://img.itch.zone/aW1nLzI4OTM2NjM4LnBuZw==/original/wNiC4Y.png', tags: ['Sci-fi', 'Survival'], points: [{ label: 'Systems Design', text: 'Designed a sci-fi survival game, balancing resource management and base-building.' }, { label: 'GDD & UX/UI', text: 'Authored GDDs, managed balance spreadsheets, created UI/UX frameworks in Figma.' }, { label: 'Unity Development', text: 'Developed core gameplay code, managed backups/version control.' }, { label: 'Leadership', text: 'Led team, enforced QA, successfully defended project to academic committees.' }] },
-    { title: 'Blade of Legends!', url: 'https://www.roblox.com/games/102984869133963/Blade-of-Legends', type: 'Roblox Studio', date: "Jan-May '26", role: 'Game Designer Intern', image: 'https://image.api.playstation.com/vulcan/ap/rnd/202604/0801/12278d7eaa31b8e9afe79e98f5017d4522b3ac51c7635826.jpg?w=440', tags: ['Multiplayer', 'Economy'], points: [{ label: '3D Gameplay Design', text: 'Designed a 3D multiplayer Roblox Deathmatch for up to 26 players, featuring an unlimited respawn mechanic.' }, { label: 'Gacha & Economy', text: 'Developed in-game economy and Gacha systems with outfit and weapon skins to drive player engagement.' }, { label: 'Reward Balancing', text: 'Balanced progression using placement-based currency rewards to foster competitive gameplay.' }] },
+    { title: 'Pioneer of the Stars', url: 'https://moonun.itch.io/pioneer-of-the-stars', type: 'Unity', date: "Jan-Aug 26", role: 'Game Designer, Developer & Project Manager', image: 'https://img.itch.zone/aW1nLzI4OTM2NjM4LnBuZw==/original/wNiC4Y.png', tags: ['Sci-fi', 'Survival'], points: [{ label: 'Systems Design', text: 'Designed a sci-fi survival game, balancing resource management and base-building.' }, { label: 'GDD & UX/UI', text: 'Authored GDDs, managed balance spreadsheets, created UI/UX frameworks in Figma.' }, { label: 'Unity Development', text: 'Developed core gameplay code, managed backups/version control.' }, { label: 'Leadership', text: 'Led team, enforced QA, successfully defended project to academic committees.' }] },
+    { title: 'Blade of Legends!', url: 'https://www.roblox.com/games/102984869133963/Blade-of-Legends', type: 'Roblox Studio', date: "Jan-May 26", role: 'Game Designer Intern', image: 'https://image.api.playstation.com/vulcan/ap/rnd/202604/0801/12278d7eaa31b8e9afe79e98f5017d4522b3ac51c7635826.jpg?w=440', tags: ['Multiplayer', 'Economy'], points: [{ label: '3D Gameplay Design', text: 'Designed a 3D multiplayer Roblox Deathmatch for up to 26 players, featuring an unlimited respawn mechanic.' }, { label: 'Gacha & Economy', text: 'Developed in-game economy and Gacha systems with outfit and weapon skins to drive player engagement.' }, { label: 'Reward Balancing', text: 'Balanced progression using placement-based currency rewards to foster competitive gameplay.' }] },
   ],
   web: [
-    { title: 'Feel it', url: 'https://mona65dp.github.io/Feel-if/', type: 'App Design', date: "Aug-Nov '25", role: 'App Designer & Developer', image: 'https://gold-brilliant-bonobo-261.mypinata.cloud/ipfs/bafkreia3wbuy3fuahfob3p4kh7jto7y5ihzeyr6a772unhdycvxujsmhmu', tags: ['UX/UI', 'Analytics', 'AI-Assisted'], points: [{ label: 'App & UX/UI Design', text: 'Designed a mood-tracking app with photo attachments, passcode lock, and PDF export functionality.' }, { label: 'AI-Assisted Coding', text: 'Developed core codebase using AI-assisted programming to speed up feature delivery.' }, { label: 'Mood Analytics', text: 'Built in-app data analytics to track and evaluate emotional trends over time.' }] },
+    { title: 'Feel it', url: 'https://mona65dp.github.io/Feel-if/', type: 'App Design', date: "Aug-Nov 25", role: 'App Designer & Developer', image: 'https://gold-brilliant-bonobo-261.mypinata.cloud/ipfs/bafkreia3wbuy3fuahfob3p4kh7jto7y5ihzeyr6a772unhdycvxujsmhmu', tags: ['UX/UI', 'Analytics', 'AI-Assisted'], points: [{ label: 'App & UX/UI Design', text: 'Designed a mood-tracking app with photo attachments, passcode lock, and PDF export functionality.' }, { label: 'AI-Assisted Coding', text: 'Developed core codebase using AI-assisted programming to speed up feature delivery.' }, { label: 'Mood Analytics', text: 'Built in-app data analytics to track and evaluate emotional trends over time.' }] },
   ],
 }
 
