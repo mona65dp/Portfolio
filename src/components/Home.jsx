@@ -5,6 +5,7 @@ const baseAsset = (path) =>
 const feelItImage = baseAsset("Photo_web/Feel_it.png");
 const PioneerImage = baseAsset("Photo_games/Pioneer_of_the_Stars.png");
 const RobloxImage = baseAsset("Photo_games/Roblox.png");
+const CvPdf = baseAsset("CV/CV_Mr.Witthaya_Audomrat.pdf");
 
 const skills = {
   "Languages & Web": ["C#", "HTML", "JavaScript", "React", "Tailwind CSS"],
@@ -246,7 +247,7 @@ function Home() {
               <div className="flex gap-3">
                 <a
                   className="social-link"
-                  href="https://canva.link/5i3s57280gtqrp8"
+                  href={CvPdf}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="CV"
