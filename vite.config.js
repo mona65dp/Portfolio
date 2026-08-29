@@ -13,6 +13,11 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icons.svg'],
+      workbox: {
+        globIgnores: ['**/*.pdf'],
+        navigateFallback: 'index.html',
+        navigateFallbackDenylist: [/^\/CV\//, /^\/Portfolio\/CV\//]
+      },
       manifest: {
         name: 'Portfolio',
         short_name: 'Portfolio',
