@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Data Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #f3f4f6; color: #1f2937; font-family: system-ui, -apple-system, sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .nav-item.active { background-color: #e5e7eb; border-left: 4px solid #4f46e5; font-weight: bold; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Top Navbar -->
+    <header class="bg-white shadow-sm px-6 py-4 flex justify-between items-center z-10">
+        <h1 class="text-xl font-bold text-gray-800"><i class="fas fa-database text-indigo-600 mr-2"></i> Portfolio Data Manager</h1>
+        <div class="flex items-center gap-4">
+            <span id="conn-status" class="text-sm font-medium text-amber-500"><i class="fas fa-circle-notch fa-spin mr-1"></i> Connecting to Cloud...</span>
+        </div>
+    </header>
+
+    <!-- Toast Notification (Replaces alert) -->
+    <div id="toast" class="fixed top-20 right-6 z-50 transform transition-all duration-300 translate-x-full opacity-0">
+        <div class="bg-gray-800 text-white px-6 py-3 rounded shadow-lg flex items-center gap-3">
+            <i id="toast-icon" class="fas fa-check-circle text-green-400"></i>
+            <span id="toast-msg">Saved successfully.</span>
+        </div>
+    </div>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-white border-r overflow-y-auto">
+            <nav class="p-4 space-y-1">
+                <button onclick="switchTab('profile')" id="nav-profile" class="nav-item active w-full text-left px-4 py-3 rounded transition flex items-center gap-3 hover:bg-gray-50">
+                    <i class="fas fa-user-circle w-5 text-center text-gray-500"></i> Profile & Contact
+                </button>
+                <button onclick="switchTab('education')" id="nav-education" class="nav-item w-full text-left px-4 py-3 rounded transition flex items-center gap-3 hover:bg-gray-50">
+                    <i class="fas fa-graduation-cap w-5 text-center text-gray-500"></i> Education
+                </button>
+                <button onclick="switchTab('skills')" id="nav-skills" class="nav-item w-full text-left px-4 py-3 rounded transition flex items-center gap-3 hover:bg-gray-50">
+                    <i class="fas fa-tools w-5 text-center text-gray-500"></i> Skills
+                </button>
+                <button onclick="switchTab('achievement')" id="nav-achievement" class="nav-item w-full text-left px-4 py-3 rounded transition flex items-center gap-3 hover:bg-gray-50">
+                    <i class="fas fa-trophy w-5 text-center text-gray-500"></i> Achievement
+                </button>
+                <button onclick="switchTab('experience')" id="nav-experience" class="nav-item w-full text-left px-4 py-3 rounded transition flex items-center gap-3 hover:bg-gray-50">
+                    <i class="fas fa-briefcase w-5 text-center text-gray-500"></i> Experiences
+                </button>
+                <button onclick="switchTab('projects')" id="nav-projects" class="nav-item w-full text-left px-4 py-3 rounded transition flex items-center gap-3 hover:bg-gray-50">
+                    <i class="fas fa-cubes w-5 text-center text-gray-500"></i> Projects
+                </button>
+                <button onclick="switchTab('messages')" id="nav-messages" class="nav-item w-full text-left px-4 py-3 rounded transition flex items-center gap-3 hover:bg-gray-50">
+                    <i class="fas fa-envelope w-5 text-center text-gray-500"></i> Inbox
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 overflow-y-auto p-6 bg-gray-50">
+            
+            <!-- Profile Tab -->
+            <section id="tab-profile" class="tab-content active max-w-4xl">
+                <div class="bg-white p-6 rounded-lg shadow-sm border">
+                    <h2 class="text-lg font-bold border-b pb-3 mb-4">Profile & Contact Info</h2>
+                    <form id="form-profile" class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium mb-1">Name</label><input type="text" id="p-name" class="w-full p-2 border rounded"></div>
+                            <div><label class="block text-sm font-medium mb-1">Title</label><input type="text" id="p-title" class="w-full p-2 border rounded"></div>
+                        </div>
+                        <div><label class="block text-sm font-medium mb-1">Location</label><input type="text" id="p-loc" class="w-full p-2 border rounded"></div>
+                        <div><label class="block text-sm font-medium mb-1">Bio</label><textarea id="p-bio" rows="4" class="w-full p-2 border rounded"></textarea></div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium mb-1">Phone</label><input type="text" id="p-phone" class="w-full p-2 border rounded"></div>
+                            <div><label class="block text-sm font-medium mb-1">Email</label><input type="email" id="p-email" class="w-full p-2 border rounded"></div>
+                        </div>
+                        <h3 class="font-medium text-sm pt-2">Social Links</h3>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div><label class="block text-xs text-gray-500 mb-1">LinkedIn</label><input type="text" id="p-linkedin" class="w-full p-2 border rounded text-sm"></div>
+                            <div><label class="block text-xs text-gray-500 mb-1">GitHub</label><input type="text" id="p-github" class="w-full p-2 border rounded text-sm"></div>
+                            <div><label class="block text-xs text-gray-500 mb-1">Itch.io</label><input type="text" id="p-itchio" class="w-full p-2 border rounded text-sm"></div>
+                        </div>
+                        <div class="mt-4"><button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Save Profile</button></div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Education Tab -->
+            <section id="tab-education" class="tab-content max-w-3xl">
+                <div class="bg-white p-6 rounded-lg shadow-sm border">
+                    <h2 class="text-lg font-bold border-b pb-3 mb-4">Education</h2>
+                    <form id="form-education" class="space-y-4">
+                        <div><label class="block text-sm font-medium mb-1">University</label><input type="text" id="e-uni" class="w-full p-2 border rounded"></div>
+                        <div><label class="block text-sm font-medium mb-1">Faculty</label><input type="text" id="e-fac" class="w-full p-2 border rounded"></div>
+                        <div><label class="block text-sm font-medium mb-1">Major</label><input type="text" id="e-maj" class="w-full p-2 border rounded"></div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium mb-1">Period (e.g., 2022 - 2026)</label><input type="text" id="e-per" class="w-full p-2 border rounded"></div>
+                            <div><label class="block text-sm font-medium mb-1">GPAX</label><input type="text" id="e-gpa" class="w-full p-2 border rounded"></div>
+                        </div>
+                        <div class="mt-4"><button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Save Education</button></div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Skills Tab -->
+            <section id="tab-skills" class="tab-content max-w-3xl">
+                <div class="bg-white p-6 rounded-lg shadow-sm border">
+                    <h2 class="text-lg font-bold border-b pb-3 mb-4">Skills (Comma separated)</h2>
+                    <form id="form-skills" class="space-y-4">
+                        <div><label class="block text-sm font-medium mb-1">Languages & Web</label><input type="text" id="s-lang" placeholder="C#, HTML, React" class="w-full p-2 border rounded"></div>
+                        <div><label class="block text-sm font-medium mb-1">Dev Tools & Engines</label><input type="text" id="s-tools" placeholder="Unity, Roblox Studio" class="w-full p-2 border rounded"></div>
+                        <div><label class="block text-sm font-medium mb-1">Design & Tools</label><input type="text" id="s-design" placeholder="Figma, Canva" class="w-full p-2 border rounded"></div>
+                        <div class="mt-4"><button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Save Skills</button></div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Achievement Tab -->
+            <section id="tab-achievement" class="tab-content max-w-3xl">
+                <div class="bg-white p-6 rounded-lg shadow-sm border">
+                    <h2 class="text-lg font-bold border-b pb-3 mb-4">Highlight Achievement</h2>
+                    <form id="form-achievement" class="space-y-4">
+                        <div><label class="block text-sm font-medium mb-1">Title</label><input type="text" id="a-title" class="w-full p-2 border rounded"></div>
+                        <div><label class="block text-sm font-medium mb-1">Role / Context</label><input type="text" id="a-role" class="w-full p-2 border rounded"></div>
+                        <div><label class="block text-sm font-medium mb-1">Description</label><textarea id="a-desc" rows="3" class="w-full p-2 border rounded"></textarea></div>
+                        <div class="mt-4"><button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Save Achievement</button></div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Experience Tab -->
+            <section id="tab-experience" class="tab-content max-w-4xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold">Experiences</h2>
+                    <button onclick="openFormModal('exp')" class="bg-indigo-600 text-white px-3 py-1.5 rounded text-sm hover:bg-indigo-700"><i class="fas fa-plus"></i> Add Experience</button>
+                </div>
+                <div id="exp-list" class="space-y-3">
+                    <div class="p-4 bg-white border rounded text-center text-gray-500">Loading experiences...</div>
+                </div>
+            </section>
+
+            <!-- Projects Tab -->
+            <section id="tab-projects" class="tab-content max-w-5xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold">Projects</h2>
+                    <button onclick="openFormModal('proj')" class="bg-indigo-600 text-white px-3 py-1.5 rounded text-sm hover:bg-indigo-700"><i class="fas fa-plus"></i> Add Project</button>
+                </div>
+                <div id="proj-list" class="grid grid-cols-1 gap-3">
+                    <div class="p-4 bg-white border rounded text-center text-gray-500">Loading projects...</div>
+                </div>
+            </section>
+
+            <!-- Messages Tab -->
+            <section id="tab-messages" class="tab-content max-w-4xl">
+                <h2 class="text-xl font-bold mb-4">Inbox Messages</h2>
+                <div id="msg-list" class="space-y-3">
+                    <div class="p-4 bg-white border rounded text-center text-gray-500">Loading messages...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals for Add/Edit -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 items-center justify-center p-4">
+        
+        <!-- Experience Modal -->
+        <div id="modal-exp" class="bg-white rounded-lg shadow-xl w-full max-w-lg hidden flex-col">
+            <div class="p-4 border-b flex justify-between items-center">
+                <h3 class="font-bold text-lg" id="modal-exp-title">Add Experience</h3>
+                <button onclick="closeModals()" class="text-gray-500 hover:text-black"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="form-exp" class="p-4 space-y-3 overflow-y-auto max-h-[70vh]">
+                <input type="hidden" id="ex-id">
+                <div class="grid grid-cols-2 gap-3">
+                    <div><label class="block text-xs font-medium mb-1">Role</label><input type="text" id="ex-role" required class="w-full p-2 border rounded text-sm"></div>
+                    <div><label class="block text-xs font-medium mb-1">Company</label><input type="text" id="ex-comp" required class="w-full p-2 border rounded text-sm"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div><label class="block text-xs font-medium mb-1">Location</label><input type="text" id="ex-loc" required class="w-full p-2 border rounded text-sm"></div>
+                    <div><label class="block text-xs font-medium mb-1">Period</label><input type="text" id="ex-per" required class="w-full p-2 border rounded text-sm"></div>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium mb-1">Theme Color</label>
+                    <select id="ex-color" class="w-full p-2 border rounded text-sm"><option value="primary">Primary (Blue)</option><option value="secondary">Secondary (Green)</option></select>
+                </div>
+                <div><label class="block text-xs font-medium mb-1">Bullets (One per line)</label><textarea id="ex-bull" rows="4" class="w-full p-2 border rounded text-sm"></textarea></div>
+                <div class="flex justify-end gap-2 pt-2 border-t">
+                    <button type="button" onclick="closeModals()" class="px-4 py-2 border rounded text-sm">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded text-sm">Save</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Project Modal -->
+        <div id="modal-proj" class="bg-white rounded-lg shadow-xl w-full max-w-xl hidden flex-col">
+            <div class="p-4 border-b flex justify-between items-center">
+                <h3 class="font-bold text-lg" id="modal-proj-title">Add Project</h3>
+                <button onclick="closeModals()" class="text-gray-500 hover:text-black"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="form-proj" class="p-4 space-y-3 overflow-y-auto max-h-[70vh]">
+                <input type="hidden" id="pr-id">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Category</label>
+                        <select id="pr-cat" class="w-full p-2 border rounded text-sm"><option value="game">Game</option><option value="web">Web & App</option></select>
+                    </div>
+                    <div><label class="block text-xs font-medium mb-1">Engine/Platform</label><input type="text" id="pr-eng" required class="w-full p-2 border rounded text-sm"></div>
+                </div>
+                <div><label class="block text-xs font-medium mb-1">Title</label><input type="text" id="pr-title" required class="w-full p-2 border rounded text-sm"></div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div><label class="block text-xs font-medium mb-1">Role</label><input type="text" id="pr-role" class="w-full p-2 border rounded text-sm"></div>
+                    <div><label class="block text-xs font-medium mb-1">Period</label><input type="text" id="pr-per" class="w-full p-2 border rounded text-sm"></div>
+                </div>
+                <div><label class="block text-xs font-medium mb-1">Thumbnail URL</label><input type="text" id="pr-thumb" class="w-full p-2 border rounded text-sm"></div>
+                <div><label class="block text-xs font-medium mb-1">Tags (Comma separated)</label><input type="text" id="pr-tags" class="w-full p-2 border rounded text-sm"></div>
+                <div><label class="block text-xs font-medium mb-1">Bullets (One per line)</label><textarea id="pr-bull" rows="3" class="w-full p-2 border rounded text-sm"></textarea></div>
+                <div class="flex justify-end gap-2 pt-2 border-t">
+                    <button type="button" onclick="closeModals()" class="px-4 py-2 border rounded text-sm">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded text-sm">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Environment Variables Injection
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        
+        // Initialize Firebase
+        let app, db, auth;
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+        } catch(e) {
+            console.error("Firebase Init Error:", e);
+        }
+
+        // Global State & Paths
+        const basePath = `artifacts/${appId}/public/data`;
+        let expsData = [];
+        let projsData = [];
+
+        // Toast Helper
+        window.showToast = function(msg, isErr = false) {
+            const t = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            document.getElementById('toast-icon').className = isErr ? 'fas fa-exclamation-circle text-red-400' : 'fas fa-check-circle text-green-400';
+            t.classList.remove('translate-x-full', 'opacity-0');
+            setTimeout(() => t.classList.add('translate-x-full', 'opacity-0'), 3000);
+        }
+
+        // Setup UI Tabs
+        window.switchTab = function(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active', 'border-l-4', 'border-indigo-600', 'bg-gray-200'));
+            document.getElementById('tab-' + tab).classList.add('active');
+            const nav = document.getElementById('nav-' + tab);
+            nav.classList.add('active');
+            nav.style.borderLeft = "4px solid #4f46e5";
+            nav.style.backgroundColor = "#e5e7eb";
+        }
+
+        // Modals Logic
+        window.openFormModal = function(type, id = null) {
+            document.getElementById('modal-backdrop').style.display = 'flex';
+            document.getElementById('modal-exp').style.display = 'none';
+            document.getElementById('modal-proj').style.display = 'none';
+            
+            if(type === 'exp') {
+                document.getElementById('modal-exp').style.display = 'flex';
+                document.getElementById('form-exp').reset();
+                document.getElementById('ex-id').value = '';
+                document.getElementById('modal-exp-title').textContent = id ? 'Edit Experience' : 'Add Experience';
+                if(id) {
+                    const e = expsData.find(x => x.id === id);
+                    if(e) {
+                        document.getElementById('ex-id').value = e.id;
+                        document.getElementById('ex-role').value = e.role || '';
+                        document.getElementById('ex-comp').value = e.company || '';
+                        document.getElementById('ex-loc').value = e.location || '';
+                        document.getElementById('ex-per').value = e.period || '';
+                        document.getElementById('ex-color').value = e.themeColor || 'primary';
+                        document.getElementById('ex-bull').value = (e.bullets || []).join('\n');
+                    }
+                }
+            } else if(type === 'proj') {
+                document.getElementById('modal-proj').style.display = 'flex';
+                document.getElementById('form-proj').reset();
+                document.getElementById('pr-id').value = '';
+                document.getElementById('modal-proj-title').textContent = id ? 'Edit Project' : 'Add Project';
+                if(id) {
+                    const p = projsData.find(x => x.id === id);
+                    if(p) {
+                        document.getElementById('pr-id').value = p.id;
+                        document.getElementById('pr-cat').value = p.category || 'game';
+                        document.getElementById('pr-eng').value = p.engine || '';
+                        document.getElementById('pr-title').value = p.title || '';
+                        document.getElementById('pr-role').value = p.role || '';
+                        document.getElementById('pr-per').value = p.period || '';
+                        document.getElementById('pr-thumb').value = p.thumbnail || '';
+                        document.getElementById('pr-tags').value = (p.tags || []).join(', ');
+                        document.getElementById('pr-bull').value = (p.bullets || []).join('\n');
+                    }
+                }
+            }
+        }
+
+        window.closeModals = function() {
+            document.getElementById('modal-backdrop').style.display = 'none';
+        }
+
+        async function initApp() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined') {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                if(auth.currentUser) {
+                    document.getElementById('conn-status').innerHTML = '<i class="fas fa-check-circle text-green-500 mr-1"></i> Connected';
+                    setupListeners();
+                } else {
+                    document.getElementById('conn-status').innerHTML = '<i class="fas fa-times-circle text-red-500 mr-1"></i> Auth Failed';
+                }
+            } catch (err) {
+                console.error("Auth Error:", err);
+                document.getElementById('conn-status').innerHTML = '<i class="fas fa-exclamation-triangle text-red-500 mr-1"></i> Error';
+            }
+        }
+
+        function setupListeners() {
+            if(!auth.currentUser) return;
+
+            // 1. Profile
+            onSnapshot(doc(db, basePath, 'portfolio_profile', 'main', 'doc'), (docSnap) => {
+                if(docSnap.exists()) {
+                    const d = docSnap.data();
+                    document.getElementById('p-name').value = d.name || '';
+                    document.getElementById('p-title').value = d.title || '';
+                    document.getElementById('p-loc').value = d.location || '';
+                    document.getElementById('p-bio').value = d.bio || '';
+                    document.getElementById('p-phone').value = d.phone || '';
+                    document.getElementById('p-email').value = d.email || '';
+                    if(d.socials) {
+                        document.getElementById('p-linkedin').value = d.socials.linkedin || '';
+                        document.getElementById('p-github').value = d.socials.github || '';
+                        document.getElementById('p-itchio').value = d.socials.itchio || '';
+                    }
+                }
+            }, (e) => console.error(e));
+
+            // 2. Education
+            onSnapshot(doc(db, basePath, 'portfolio_education', 'main', 'doc'), (docSnap) => {
+                if(docSnap.exists()) {
+                    const d = docSnap.data();
+                    document.getElementById('e-uni').value = d.university || '';
+                    document.getElementById('e-fac').value = d.faculty || '';
+                    document.getElementById('e-maj').value = d.major || '';
+                    document.getElementById('e-per').value = d.period || '';
+                    document.getElementById('e-gpa').value = d.gpax || '';
+                }
+            }, (e) => console.error(e));
+
+            // 3. Skills
+            onSnapshot(doc(db, basePath, 'portfolio_skills', 'main', 'doc'), (docSnap) => {
+                if(docSnap.exists()) {
+                    const d = docSnap.data();
+                    document.getElementById('s-lang').value = (d.languages || []).join(', ');
+                    document.getElementById('s-tools').value = (d.tools || []).join(', ');
+                    document.getElementById('s-design').value = (d.design || []).join(', ');
+                }
+            }, (e) => console.error(e));
+
+            // 4. Achievement
+            onSnapshot(doc(db, basePath, 'portfolio_achievement', 'main', 'doc'), (docSnap) => {
+                if(docSnap.exists()) {
+                    const d = docSnap.data();
+                    document.getElementById('a-title').value = d.title || '';
+                    document.getElementById('a-role').value = d.role || '';
+                    document.getElementById('a-desc').value = d.description || '';
+                }
+            }, (e) => console.error(e));
+
+            // 5. Experiences
+            onSnapshot(collection(db, basePath, 'portfolio_experiences'), (snapshot) => {
+                expsData = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
+                const list = document.getElementById('exp-list');
+                if(expsData.length === 0) { list.innerHTML = '<div class="p-4 bg-white border rounded text-center text-gray-500">No experiences added yet.</div>'; return; }
+                list.innerHTML = expsData.map(e => `
+                    <div class="bg-white p-4 border rounded flex justify-between items-start shadow-sm">
+                        <div>
+                            <h4 class="font-bold text-gray-800">${e.role}</h4>
+                            <p class="text-sm text-gray-600">${e.company} | ${e.period}</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openFormModal('exp', '${e.id}')" class="text-indigo-600 hover:bg-indigo-50 p-2 rounded text-sm"><i class="fas fa-edit"></i></button>
+                            <button onclick="deleteDocItem('exp', '${e.id}')" class="text-red-600 hover:bg-red-50 p-2 rounded text-sm"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            }, (e) => console.error(e));
+
+            // 6. Projects
+            onSnapshot(collection(db, basePath, 'portfolio_projects'), (snapshot) => {
+                projsData = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
+                const list = document.getElementById('proj-list');
+                if(projsData.length === 0) { list.innerHTML = '<div class="p-4 bg-white border rounded text-center text-gray-500">No projects added yet.</div>'; return; }
+                list.innerHTML = projsData.map(p => `
+                    <div class="bg-white p-4 border rounded flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <img src="${p.thumbnail}" class="w-16 h-12 object-cover rounded bg-gray-200" onerror="this.src='https://placehold.co/100'">
+                            <div>
+                                <h4 class="font-bold text-gray-800">${p.title} <span class="text-xs font-normal bg-gray-100 px-2 py-0.5 rounded ml-2">${p.category}</span></h4>
+                                <p class="text-xs text-gray-500">${p.engine} | ${p.role}</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openFormModal('proj', '${p.id}')" class="text-indigo-600 hover:bg-indigo-50 p-2 rounded text-sm"><i class="fas fa-edit"></i></button>
+                            <button onclick="deleteDocItem('proj', '${p.id}')" class="text-red-600 hover:bg-red-50 p-2 rounded text-sm"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            }, (e) => console.error(e));
+
+            // 7. Messages
+            onSnapshot(collection(db, basePath, 'portfolio_messages'), (snapshot) => {
+                const msgs = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
+                msgs.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+                const list = document.getElementById('msg-list');
+                if(msgs.length === 0) { list.innerHTML = '<div class="p-4 bg-white border rounded text-center text-gray-500">Inbox is empty.</div>'; return; }
+                list.innerHTML = msgs.map(m => `
+                    <div class="bg-white p-4 border rounded shadow-sm">
+                        <div class="flex justify-between border-b pb-2 mb-2">
+                            <div>
+                                <h4 class="font-bold text-gray-800">${m.name} <span class="font-normal text-sm text-gray-500">&lt;${m.email}&gt;</span></h4>
+                                <p class="text-xs font-medium text-indigo-600">${m.subject}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs text-gray-400 block mb-1">${new Date(m.createdAt).toLocaleString()}</span>
+                                <button onclick="deleteDocItem('msg', '${m.id}')" class="text-xs text-red-500 hover:underline">Delete</button>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-700 whitespace-pre-wrap">${m.message}</p>
+                    </div>
+                `).join('');
+            }, (e) => console.error(e));
+        }
+
+        // 1. Save Profile
+        document.getElementById('form-profile').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!auth.currentUser) return;
+            const data = {
+                name: document.getElementById('p-name').value, title: document.getElementById('p-title').value,
+                location: document.getElementById('p-loc').value, bio: document.getElementById('p-bio').value,
+                phone: document.getElementById('p-phone').value, email: document.getElementById('p-email').value,
+                socials: { linkedin: document.getElementById('p-linkedin').value, github: document.getElementById('p-github').value, itchio: document.getElementById('p-itchio').value }
+            };
+            await setDoc(doc(db, basePath, 'portfolio_profile', 'main', 'doc'), data);
+            showToast('Profile updated!');
+        });
+
+        // 2. Save Education
+        document.getElementById('form-education').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!auth.currentUser) return;
+            const data = {
+                university: document.getElementById('e-uni').value, faculty: document.getElementById('e-fac').value,
+                major: document.getElementById('e-maj').value, period: document.getElementById('e-per').value, gpax: document.getElementById('e-gpa').value
+            };
+            await setDoc(doc(db, basePath, 'portfolio_education', 'main', 'doc'), data);
+            showToast('Education updated!');
+        });
+
+        // 3. Save Skills
+        document.getElementById('form-skills').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!auth.currentUser) return;
+            const data = {
+                languages: document.getElementById('s-lang').value.split(',').map(s=>s.trim()).filter(Boolean),
+                tools: document.getElementById('s-tools').value.split(',').map(s=>s.trim()).filter(Boolean),
+                design: document.getElementById('s-design').value.split(',').map(s=>s.trim()).filter(Boolean)
+            };
+            await setDoc(doc(db, basePath, 'portfolio_skills', 'main', 'doc'), data);
+            showToast('Skills updated!');
+        });
+
+        // 4. Save Achievement
+        document.getElementById('form-achievement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!auth.currentUser) return;
+            const data = { title: document.getElementById('a-title').value, role: document.getElementById('a-role').value, description: document.getElementById('a-desc').value };
+            await setDoc(doc(db, basePath, 'portfolio_achievement', 'main', 'doc'), data);
+            showToast('Achievement updated!');
+        });
+
+        // 5. Save Experience
+        document.getElementById('form-exp').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!auth.currentUser) return;
+            const id = document.getElementById('ex-id').value;
+            const data = {
+                role: document.getElementById('ex-role').value, company: document.getElementById('ex-comp').value,
+                location: document.getElementById('ex-loc').value, period: document.getElementById('ex-per').value, themeColor: document.getElementById('ex-color').value,
+                bullets: document.getElementById('ex-bull').value.split('\n').map(s=>s.trim()).filter(Boolean)
+            };
+            if(id) await updateDoc(doc(db, basePath, 'portfolio_experiences', id), data);
+            else await addDoc(collection(db, basePath, 'portfolio_experiences'), data);
+            closeModals(); showToast('Experience saved!');
+        });
+
+        // 6. Save Project
+        document.getElementById('form-proj').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!auth.currentUser) return;
+            const id = document.getElementById('pr-id').value;
+            const data = {
+                category: document.getElementById('pr-cat').value, engine: document.getElementById('pr-eng').value,
+                title: document.getElementById('pr-title').value, role: document.getElementById('pr-role').value, period: document.getElementById('pr-per').value,
+                thumbnail: document.getElementById('pr-thumb').value,
+                tags: document.getElementById('pr-tags').value.split(',').map(s=>s.trim()).filter(Boolean),
+                bullets: document.getElementById('pr-bull').value.split('\n').map(s=>s.trim()).filter(Boolean)
+            };
+            if(id) await updateDoc(doc(db, basePath, 'portfolio_projects', id), data);
+            else await addDoc(collection(db, basePath, 'portfolio_projects'), data);
+            closeModals(); showToast('Project saved!');
+        });
+
+        // Global Delete Function
+        window.deleteDocItem = async function(type, id) {
+            if(!auth.currentUser) return;
+            let targetCollection = '';
+            let confirmMsg = '';
+            
+            if(type === 'exp') { targetCollection = 'portfolio_experiences'; confirmMsg = 'Delete this experience?'; }
+            else if(type === 'proj') { targetCollection = 'portfolio_projects'; confirmMsg = 'Delete this project?'; }
+            else if(type === 'msg') { targetCollection = 'portfolio_messages'; confirmMsg = 'Delete this message?'; }
+
+            // Because browser alert() is prohibited, we use a simple custom confirmation replacement or direct delete
+            // For safety without alert/confirm, we'll execute it directly for this demo, 
+            // In a full prod app you'd want a custom UI modal for confirmation.
+            try {
+                await deleteDoc(doc(db, basePath, targetCollection, id));
+                showToast('Item deleted successfully.');
+            } catch(e) {
+                showToast('Failed to delete', true);
+            }
+        }
+
+        // Boot
+        initApp();
+
+    </script>
+</body>
+</html>
