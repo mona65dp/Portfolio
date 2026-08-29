@@ -251,7 +251,7 @@ body {
   content: "";
 }
 .timeline-item.secondary {
-  border-color: (16, 185, 129, 0.5);
+  border-color: rgba(99, 102, 241, 0.5);
 }
 .timeline-item.secondary::before {
   background: #4f46e5;

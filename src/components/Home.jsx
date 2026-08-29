@@ -1,7 +1,13 @@
 import { useState } from "react";
 
+const baseAsset = (path) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+const feelItImage = baseAsset("Photo_web/Feel_it.png");
+const PioneerImage = baseAsset("Photo_games/Pioneer_of_the_Stars.png");
+const RobloxImage = baseAsset("Photo_games/Roblox.png");
+
 const skills = {
-  "Languages & Web": ["C#", "HTML", "React", "Tailwind CSS", "JavaScript"],
+  "Languages & Web": ["C#", "HTML", "JavaScript", "React", "Tailwind CSS"],
   "Dev Tools & Engines": ["Unity", "Roblox Studio", "VS Code", "GitKraken"],
   "Design & Tools": ["Figma", "Canva", "OBS Studio", "TikTok Studio"],
 };
@@ -48,7 +54,6 @@ const experiences = [
     ],
   },
 ];
-
 const projects = {
   game: [
     {
@@ -58,7 +63,7 @@ const projects = {
       date: "Jan-Aug 26",
       role: "Game Designer, Developer & Project Manager",
       image:
-        "https://img.itch.zone/aW1nLzI4OTM2NjM4LnBuZw==/original/wNiC4Y.png",
+        PioneerImage,
       tags: ["Sci-fi", "Survival"],
       points: [
         {
@@ -86,7 +91,7 @@ const projects = {
       date: "Jan-May 26",
       role: "Game Designer Intern",
       image:
-        "https://static.wixstatic.com/media/70db6b_3917d4d6a2e64b0b8df200c260e3cedc~mv2.png/v1/fill/w_1920,h_1080,al_c/70db6b_3917d4d6a2e64b0b8df200c260e3cedc~mv2.png",
+        RobloxImage,
       tags: ["Multiplayer", "Economy"],
       points: [
         {
@@ -111,8 +116,7 @@ const projects = {
       type: "App Design",
       date: "Aug-Nov 25",
       role: "App Designer & Developer",
-      image:
-        "https://gold-brilliant-bonobo-261.mypinata.cloud/ipfs/bafkreia3wbuy3fuahfob3p4kh7jto7y5ihzeyr6a772unhdycvxujsmhmu",
+      image: feelItImage,
       tags: ["UX/UI", "Analytics", "AI-Assisted"],
       points: [
         {
