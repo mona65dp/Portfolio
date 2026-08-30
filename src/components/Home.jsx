@@ -6,12 +6,13 @@ const feelItImage = baseAsset("Photo_web/Feel_it.png");
 const PioneerImage = baseAsset("Photo_games/Pioneer_of_the_Stars.png");
 const RobloxImage = baseAsset("Photo_games/Roblox.png");
 const LeatherCraftImage = baseAsset("Photo_web/The_Leather_Craft.png");
+const GalaxyAttackImage = baseAsset("Photo_games/Galaxy_Attack.png");
 //const CvPdf = baseAsset("CV/CV_Mr.Witthaya_Audomrat.pdf");
 
 const skills = {
   "Languages & Web": ["C#", "HTML", "JavaScript", "React", "Tailwind CSS"],
-  "Dev Tools & Engines": ["Unity", "Roblox Studio", "VS Code", "GitKraken"],
-  "Design & Tools": ["Figma", "Canva", "OBS Studio", "TikTok Studio"],
+  "Dev Tools & Engines": ["Unity", "Roblox Studio", "VS Code", "GitHub"],
+  "Design & Tools": ["Microsoft Word","Figma", "Canva", "OBS Studio", "TikTok Studio"],
 };
 
 const experiences = [
@@ -66,7 +67,7 @@ const projects = {
       role: "Game Designer, Developer & Project Manager",
       image:
         PioneerImage,
-      tags: ["Sci-fi", "Survival"],
+      tags: ["C#", "Microsoft Word", "Figma", "Survival"],
       points: [
         {
           label: "Systems Design",
@@ -94,7 +95,7 @@ const projects = {
       role: "Game Designer Intern",
       image:
         RobloxImage,
-      tags: ["Multiplayer", "Economy"],
+      tags: ["Microsoft Word", "Figma", "Google Sheet", "Multiplayer"],
       points: [
         {
           label: "3D Gameplay Design",
@@ -110,39 +111,40 @@ const projects = {
         },
       ],
     },
-  ],
-  web: [
     {
-      title: "Feel it",
-      url: "https://mona65dp.github.io/Feel-if/",
-      type: "App Design",
-      date: "Aug-Nov 25",
-      role: "App Designer & Developer",
-      image: feelItImage,
-      tags: ["UX/UI", "Analytics", "AI-Assisted"],
+      title: "Galaxy Attack",
+      url: "https://mona65dp.github.io/Galaxy_Attack/",
+      type: "HTML",
+      date: "Aug 25",
+      role: "Game Designer & Developer",
+      image:
+        GalaxyAttackImage,
+      tags: ["HTML", "Canva", "GitHub", "Shooter"],
       points: [
         {
-          label: "App & UX/UI Design",
-          text: "Designed a mood-tracking app with photo attachments, passcode lock, and PDF export functionality.",
+          label: "2D Pixel Game Development",
+          text: "Designed and developed a 2D pixel shooter game, Galaxy Attack, using HTML",
         },
         {
-          label: "AI-Assisted Coding",
-          text: "Developed core codebase using AI-assisted programming to speed up feature delivery.",
+          label: "Core Mechanics & Systems",
+          text: "Implemented core shooting mechanics, player controls, dynamic enemy spawning, and collision detection.",
         },
         {
-          label: "Mood Analytics",
-          text: "Built in-app data analytics to track and evaluate emotional trends over time.",
+          label: "Performance Optimization",
+          text: "Optimized game logic and rendering performance for smooth browser-based execution across multiple devices.",
         },
       ],
     },
+  ],
+  web: [
     {
-      title: "The Leather Craft(Prototype)",
+      title: "The Leather Craft",
       url: "https://mona65dp.github.io/The-Leather-Craft_Prototype/",
-      type: "UX/UI Design",
+      type: "HTML (Prototype)",
       date: "Oct 25",
       role: "UX/UI Designer & Developer",
       image: LeatherCraftImage,
-      tags: ["UX/UI", "Prototyping", "AI-Developer"],
+      tags: ["HTML", "Figma", "GitHub", "Website"],
       points: [
         {
           label: "AI-Assisted Development",
@@ -155,6 +157,29 @@ const projects = {
         {
           label: "Brand Identity & Styling",
           text: "Selected a monochrome palette and paired Playfair Display SC with Kanit typography for a premium look.",
+        },
+      ],
+    },
+    {
+      title: "Feel it",
+      url: "https://mona65dp.github.io/Feel-if/",
+      type: "React",
+      date: "Aug-Nov 25",
+      role: "App Designer & Developer",
+      image: feelItImage,
+      tags: ["PWA", "Figma", "GitHub", "Mobile App"],
+      points: [
+        {
+          label: "App & UX/UI Design",
+          text: "Designed a mood-tracking app with photo attachments, passcode lock, and PDF export functionality.",
+        },
+        {
+          label: "AI-Assisted Coding",
+          text: "Developed core codebase using AI-assisted programming to speed up feature delivery.",
+        },
+        {
+          label: "Mood Analytics",
+          text: "Built in-app data analytics to track and evaluate emotional trends over time.",
         },
       ],
     },
@@ -419,7 +444,7 @@ function Home() {
                 type="button"
               >
                 <i className="fas fa-gamepad mr-2" />
-                Game Projects
+                Game
               </button>
               <button
                 className={`tab-button ${projectType === "web" ? "selected" : ""}`}
@@ -427,7 +452,7 @@ function Home() {
                 type="button"
               >
                 <i className="fas fa-laptop-code mr-2" />
-                Web & App Projects
+                Web & App
               </button>
             </div>
           </div>
