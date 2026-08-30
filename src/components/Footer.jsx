@@ -1,6 +1,6 @@
-const baseAsset = (path) =>
+/*const baseAsset = (path) =>
   `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
-const cvPdf = baseAsset("CV/CV_Mr.Witthaya_Audomrat.pdf");
+const cvPdf = baseAsset("CV/CV_Mr.Witthaya_Audomrat.pdf");*/
 
 function Footer() {
   return (
@@ -11,7 +11,7 @@ function Footer() {
           <div className="mb-8 flex flex-col items-center justify-center gap-4 text-sm font-medium text-slate-600 sm:flex-row sm:gap-8">
             <a className="footer-link" href="tel:+66611822035"><i className="fas fa-phone mr-2" />+66 61 182 2035</a>
             <a className="footer-link" href="mailto:witthaya.audomrat@gmail.com"><i className="fas fa-envelope mr-2" />witthaya.audomrat@gmail.com</a>
-            <a className="footer-link" href={cvPdf} target="_blank" rel="noopener noreferrer" download><i className="fas fa-file-pdf mr-2" />Download CV</a>
+            {/* <a className="footer-link" href={cvPdf} target="_blank" rel="noopener noreferrer" download><i className="fas fa-file-pdf mr-2" />Download CV</a> */}
           </div>
           <p className="text-sm font-light text-slate-500">&copy; 2026 Witthaya Audomrat. All rights reserved.</p>
         </div>

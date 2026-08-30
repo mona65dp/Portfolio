@@ -5,6 +5,7 @@ const baseAsset = (path) =>
 const feelItImage = baseAsset("Photo_web/Feel_it.png");
 const PioneerImage = baseAsset("Photo_games/Pioneer_of_the_Stars.png");
 const RobloxImage = baseAsset("Photo_games/Roblox.png");
+const LeatherCraftImage = baseAsset("Photo_web/The_Leather_Craft.png");
 //const CvPdf = baseAsset("CV/CV_Mr.Witthaya_Audomrat.pdf");
 
 const skills = {
@@ -25,8 +26,8 @@ const experiences = [
         text: "Designed core game mechanics, rules, and balanced in-game economies.",
       },
       {
-        label: "Production & QA",
-        text: "Managed task allocation and enforced QA standards to hit project deadlines.",
+        label: "Project & QA Leadership",
+        text: "Led task allocation and enforced QA to hit deadlines, saving THB 72K/year by reducing headcount.",
       },
       {
         label: "Client Relations",
@@ -131,6 +132,29 @@ const projects = {
         {
           label: "Mood Analytics",
           text: "Built in-app data analytics to track and evaluate emotional trends over time.",
+        },
+      ],
+    },
+    {
+      title: "The Leather Craft(Prototype)",
+      url: "https://mona65dp.github.io/The-Leather-Craft_Prototype/",
+      type: "UX/UI Design",
+      date: "Oct 25",
+      role: "UX/UI Designer & Developer",
+      image: LeatherCraftImage,
+      tags: ["UX/UI", "Prototyping", "AI-Developer"],
+      points: [
+        {
+          label: "AI-Assisted Development",
+          text: "Generated initial code using AI and refactored it to align with design specifications.",
+        },
+        {
+          label: "UX/UI & Layout Design",
+          text: "Designed a luxury layout using Grid Systems and Whitespace for a seamless shopping experience.",
+        },
+        {
+          label: "Brand Identity & Styling",
+          text: "Selected a monochrome palette and paired Playfair Display SC with Kanit typography for a premium look.",
         },
       ],
     },
