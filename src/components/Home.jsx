@@ -174,7 +174,7 @@ const projects = {
           text: "Designed a mood-tracking app with photo attachments, passcode lock, and PDF export functionality.",
         },
         {
-          label: "AI-Assisted Coding",
+          label: "Rapid Feature Development",
           text: "Developed core codebase using AI-assisted programming to speed up feature delivery.",
         },
         {
