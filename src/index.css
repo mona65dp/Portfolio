@@ -201,6 +201,13 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
 }
+#projects .section-title {
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1.75rem;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 1.2;
+}
 .tag,
 .date-pill {
   display: inline-block;

@@ -191,7 +191,7 @@ function SectionTitle({ children }) {
     Education: "fa-graduation-cap",
     "Technical Skills": "fa-screwdriver-wrench",
     "Work Experience": "fa-briefcase",
-    Projects: "fa-folder-open",
+    Projects: "/",
   };
   return (
     <h2 className="section-title">
