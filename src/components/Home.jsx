@@ -353,7 +353,7 @@ function Home() {
                 </p>
                 <div className="mt-5 flex items-center justify-between border-t border-slate-200/70 pt-5">
                   <span className="tag tag-accent">GPAX: 3.38</span>
-                  <span className="date-pill">2022-2026</span>
+                  <span className="date-pill">2022-2025</span>
                 </div>
               </div>
               <div className="liquid-card p-6 md:p-8">
