@@ -276,7 +276,7 @@ function Home() {
             </h2>
             <p className="leading-relaxed text-slate-600">
               Fresh grad with hands-on <strong>Unity, Roblox & Figma</strong>{" "}
-              experience. Leverages <strong>AI-assisted coding</strong> for fast
+              experience. Leverages <strong>AI-assisted</strong> for fast
               gameplay prototyping, economy balancing, and QA testing. Winner of
               the <strong>Outstanding CWIE Innovation Award</strong>. Adaptable,
               hardworking, and ready to learn.
