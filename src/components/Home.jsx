@@ -263,7 +263,7 @@ function Home() {
             <span>Witthaya Audomrat</span>
           </h1>
           <p className="mx-auto mt-5 mb-5 max-w-3xl text-xl font-light leading-relaxed text-slate-600 md:text-2xl">
-            Junior Game Designer & Developer
+            Junior Game & Web Designer/Developer
           </p>
           <div className="location-pill">
             <i className="fas fa-map-marker-alt mr-2 text-emerald-500" />
