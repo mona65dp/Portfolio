@@ -275,8 +275,8 @@ function Home() {
               About Me
             </h2>
             <p className="leading-relaxed text-slate-600">
-              Fresh grad with hands-on <strong>Unity, Roblox & Figma</strong>{" "}
-              experience. Leverages <strong>AI-assisted</strong> for fast
+              Hands-on <strong>Unity, Roblox, Figma, Vite and PWA </strong>{" "}
+              experience. Leverages AI-assisted for fast
               gameplay prototyping, economy balancing, and QA testing. Winner of
               the <strong>Outstanding CWIE Innovation Award</strong>. Adaptable,
               hardworking, and ready to learn.
