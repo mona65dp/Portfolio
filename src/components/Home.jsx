@@ -276,8 +276,8 @@ function Home() {
             </h2>
             <p className="leading-relaxed text-slate-600">
               Hands-on experience in <strong>Unity, Roblox, Figma, Vite and PWA </strong>
-              Skilled in rapid gameplay prototyping, economy balancing, and <strong>QA testing.</strong>
-              <strong>Outstanding CWIE Innovation Award</strong>. Adaptable,
+              Skilled in rapid gameplay prototyping, economy balancing,<strong>QA testing </strong>
+               and <strong>Outstanding CWIE Innovation Award</strong>. Adaptable,
               hardworking, and ready to learn.
             </p>
             <div className="mt-6 flex flex-col gap-3 border-t border-slate-200/70 pt-6 text-sm font-medium text-slate-700 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
