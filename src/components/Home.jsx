@@ -276,7 +276,7 @@ function Home() {
             </h2>
             <p className="leading-relaxed text-slate-600">
               Hands-on experience in <strong>Unity, Roblox, Figma, Vite and PWA </strong>
-              Skilled in rapid gameplay prototyping, economy balancing,<strong>QA testing </strong>
+              Skilled in rapid gameplay prototyping, economy balancing, <strong>QA testing </strong>
                and <strong>Outstanding CWIE Innovation Award</strong>. Adaptable,
               hardworking, and ready to learn.
             </p>
