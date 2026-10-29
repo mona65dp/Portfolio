@@ -37,7 +37,7 @@ function Navbar() {
       <nav className="fixed left-0 right-0 top-6 z-50 flex justify-center px-4" aria-label="Main navigation">
         <div className="liquid-glass flex w-full max-w-2xl items-center justify-between rounded-full px-4 py-3 sm:px-6">
           <button type="button" onClick={goHome} className="flex items-center gap-3" aria-label="Back to top">
-            <img className="profile-image" src={"https://media.licdn.com/dms/image/v2/D5603AQHCmwET1OdiAg/profile-displayphoto-scale_200_200/B56ZyN3jPUKYAY-/0/1771906677048?e=2147483647&v=beta&t=6Eegk1zj4Joo-HKAiuHl4DLB6VArpDgtmwWYqs1zmCA"} alt="Witthaya Audomrat" />
+            <img className="profile-image" src={"https://media.licdn.com/dms/image/v2/D5603AQFEB3ccJVkDTQ/profile-displayphoto-scale_100_100/B56aFAgteWIsAc-/0/1792083679896?e=1795046400&v=beta&t=ymX5R1sp4-kaxwSlMkfiC6uMXG-QIqKJ1zxRjv32a7I"} alt="Witthaya Audomrat" />
             <span className="text-sm font-bold tracking-wide text-slate-800">Witthaya A.</span>
           </button>
 
